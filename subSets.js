@@ -20,7 +20,7 @@ function findSubSets(arr,index, result,arr1){
       arr1.push(copy.join('')) ;
     }
   
-    return arr1.sort() ;
+    return arr1;
 }
 
-console.log(findSubSets(arr,0,[],[]));
+console.log(findSubSets(arr,0,[],[]).sort());
