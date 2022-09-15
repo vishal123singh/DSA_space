@@ -31,34 +31,34 @@ function maxFrequency (str) {
 }
 console.log(maxFrequency(str));
 
-// 2nd way { timeComplexity:O(n) , Auxillary Space Taken: O(n) }
 
+// 2nd way { timeComplexity:O(n) , Auxillary Space Taken: O(n) }
 function maxFrequency (str) {
 
-	let obj = {};
+let obj = {};
 
-	for(let i=0; i<str.length; i++){
-		obj[str[i]] = 0
+for(let i=0; i<str.length; i++){
+	obj[str[i]] = 0
+}
+
+for(let i=0; i<str.length; i++){
+
+	obj[str[i]] = obj[str[i]] + 1;
+}
+
+let max = 0;
+let element;
+
+for(let key in obj){
+	if(obj[key]>max){
+		max=obj[key]
+		element=key;
 	}
+}
 
-	for(let i=0; i<str.length; i++){
+return element;
 
-		obj[str[i]] = obj[str[i]] + 1;
-	}
 
-	let max = 0;
-	let element;
-
-	for(let key in obj){
-		if(obj[key]>max){
-			max=obj[key]
-			element=key;
-		}
-	}
-
-	return element;
-
-    
 }
 console.log(maxFrequency());
 
