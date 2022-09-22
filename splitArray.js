@@ -1,3 +1,6 @@
+// Qno.410(leetcode) => Split Array Largest Sum
+
+// this is intuitive approach
 let arr = [5,1,4,9,2];
 let k=3;
 
@@ -32,7 +35,7 @@ function minMaxSumSubarray(arr,k){
     return Math.min(...minMaxSum);
 }
 
-minMaxSumSubarray(arr,k);
+console.log(minMaxSumSubarray(arr,k));
 
 function splitTheArray(arr,k,sum,result,choices,ans){
     if(sum==arr.length && result.length==k){
@@ -48,5 +51,4 @@ function splitTheArray(arr,k,sum,result,choices,ans){
         }
     }
     return;
-    
-}
+ }
