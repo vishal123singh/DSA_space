@@ -1,27 +1,41 @@
-// Valid Parenthesis
-// [],{},()
-var str="()()()";
+// time complexity: O(n)
+// auxillary space: O(n)
 
-function validParenthesis(str){
+function validParentheses(str) {
+
+  let openCharacters = { '(': 1, '{': 2, '[': 3 };
+  let closeChracters = { ')': 1, '}': 2, ']': 3 };
+
+
+  if (str.length < 1) {
+      return false;
+  }
+  else if (closeChracters[str[0]] || openCharacters[str[str.length-1]]) {
+      return false;
+  }
   
-  let myArr=["[]","{}","()"];
-  let count=0;
-  for(let i=0;i<str.length;i+=2){
-    for(let j=0;j<myArr.length;j++){
-      if((str[i]+str[i+1])==myArr[j]){
-        count++;
-        break;
+  let stack = [];
+
+  
+  for (let i = 0; i < str.length; i++){
+      if (openCharacters[str[i]]) {
+          stack.push(str[i]);
       }
-    }
-    if(count==0){
-      break;
-    }
+      else {
+          let character = stack.pop();
+          if (openCharacters[character] !== closeChracters[str[i]]) {
+              return false;
+          }
+         
+      }
   }
-  if(count==(str.length/2)){
-    return "valid";
+  if (stack.length == 0) {
+      return true;
+  } else {
+      return false;
   }
-  else{
-    return "not valid";
-  }
+  
 }
-validParenthesis(str);
+
+console.log(validParentheses("([]"))
+
