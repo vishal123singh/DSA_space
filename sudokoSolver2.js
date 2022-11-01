@@ -8,6 +8,7 @@ let sudoko = [ [3, 0, 6, 5, 0, 8, 4, 0, 0],
                [0, 0, 0, 0, 0, 0, 0, 7, 4],
                [0, 0, 5, 2, 0, 6, 3, 0, 0] ];
 
+// naive-approach
 let len = sudoko.length;
 let count=0;
 function sudokoSolver(suduko,row,col,len){
