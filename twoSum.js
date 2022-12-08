@@ -1,16 +1,20 @@
-// Two Sum
 
-var arr=[2,7,11,15];
+let arr=[2,7,11,15];
 
-function twoSum(arr,target){
-  
-for(let i=0;i<arr.length;i++){
-  for(let j=i+1;j<arr.length;j++){
-    if(target-arr[i]===arr[j]){
-      return [i,j];
+var twoSum = function (nums, target) {
+  let map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    let val = target - nums[i];
+    if (map.has(val)) {
+      let ind = map.get(val);
+      if (ind < i) {
+        return [ind, i];
       }
+    } else {
+      map.set(nums[i], i);
     }
   }
-}
+};
 
-twoSum(arr,13);
+console.log(twoSum(arr,13));

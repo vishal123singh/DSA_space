@@ -1,19 +1,42 @@
-//3 Sum
 
-var array=[-1,0,1,2,-1,-4];
+var threeSum = function (nums) {
+  let map = new Map();
+  let ans = [];
+  let set = new Set();
 
-function threeSum(arr){
-  let ans=[];
-  let check=[];
-  for(let i=0;i<arr.length-2;i++){
-    for(let j=i+1;j<arr.length;j++){
-      for(let k=j+1;k<arr.length;k++){
-        if(arr[i]+arr[j]+arr[k]==0){
-          if(check.indexOf(arr[i])==-1||check.indexOf(arr[j])==-1||check.indexOf(arr[k])==-1){
-              ans.push([arr[i],arr[j],arr[k]]);
-              check.push(arr[i],arr[j],arr[k]);
-          }}}}}
+  for (let i = 0; i < nums.length; i++) {
+
+    let temp = [nums[i]];
+
+    for (let j = i + 1; j < nums.length; j++) {
+
+      temp.push(nums[j]);
+
+      let val = 0 - (nums[i] + nums[j]);
+
+      if (map.has(val)) {
+        temp.push(val);
+        let i1 = map.get(val);
+        if (
+          i1 != i &&
+          i1 != j &&
+          !set.has(temp.sort((a, b) => a - b).join(""))
+        ) {
+          ans.push(temp);
+          set.add(temp.join(""));
+        }
+      }
+
+      if (map.has(nums[i]) == false) {
+        map.set(nums[i], i);
+      }
+      
+      if (map.has(nums[j] == false)) {
+        map.set(nums[j], j);
+      }
+
+      temp = [nums[i]];
+    }
+  }
   return ans;
-}
-
-threeSum(array);  
+};
