@@ -1,3 +1,7 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 var longestConsecutive = function (nums) {
   let map = new Map();
 
@@ -6,30 +10,29 @@ var longestConsecutive = function (nums) {
       map.set(nums[i] + 1, false);
     }
     if (map.has(nums[i] - 1)) {
-      map.set(nums[i] - 1, true);
       map.set(nums[i], false);
     } else {
       map.set(nums[i], true);
     }
   }
-
   let max = 0;
+  for (let [key, val] of map) {
+    if (map.get(key) == true) {
+      let length = 0;
 
-  map.forEach((val, key) => {
-    if (val) {
-      let k = key;
-      k++;
-      let count = 1;
-      while (map.has(k)) {
-        count++;
-        k++;
+      while (map.has(key)) {
+        length++;
+        key++;
       }
-      if (count > max) {
-        max = count;
+      if (length > max) {
+        max = length;
       }
     }
-  });
+  }
+
   return max;
 };
 
-longestConsecutive([1, -1, 2, 0, -2, -6, -3]);
+let arr = [0, 3, 7, 2, 5, 8, 4, 6, 0, 1];
+
+console.log(longestConsecutive(arr));
